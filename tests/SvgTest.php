@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace test\edwrodrig\lasagna_chart;
+namespace test\edwrodrig\cassata_chart;
 
-use edwrodrig\lasagna_chart\Svg;
+use edwrodrig\cassata_chart\Svg;
 use PHPUnit\Framework\TestCase;
 
 class SvgTest extends TestCase

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace edwrodrig\lasagna_chart;
+namespace edwrodrig\cassata_chart;
 
 
 class Svg

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace edwrodrig\lasagna_chart;
+namespace edwrodrig\cassata_chart;
 
 
 class Util {

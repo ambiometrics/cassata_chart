@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace test\edwrodrig\lasagna_chart;
+namespace test\edwrodrig\cassata_chart;
 
-use edwrodrig\lasagna_chart\Util;
+use edwrodrig\cassata_chart\Util;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;

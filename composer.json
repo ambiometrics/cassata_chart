@@ -1,5 +1,5 @@
 {
-    "name": "edwrodrig/lasagna_chart",
+    "name": "edwrodrig/cassata_chart",
     "description": "Library to generate static sites",
     "authors": [
         {
@@ -21,12 +21,12 @@
     },
     "autoload" : {
         "psr-4" : {
-            "edwrodrig\\lasagna_chart\\" : "src/"
+            "edwrodrig\\cassata_chart\\" : "src/"
         }
     },
     "autoload-dev" : {
         "psr-4" : {
-            "test\\edwrodrig\\lasagna_chart\\" : "tests/"
+            "test\\edwrodrig\\cassata_chart\\" : "tests/"
         }
     },
     "archive": {

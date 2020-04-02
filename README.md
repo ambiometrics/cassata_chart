@@ -1,4 +1,4 @@
-edwrodrig\lasagna_chart
+edwrodrig\cassata_chart
 ========
 A php library to generate static generated sites
 
@@ -29,7 +29,7 @@ There is a [example page](https://github.com/edwrodrig/lasagna_chart/tree/master
 
 ## Composer
 ```
-composer require edwrodrig/lasagna_chart
+composer require edwrodrig/cassata_chart
 ```
 
 ## Testing

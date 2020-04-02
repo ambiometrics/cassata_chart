@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace test\edwrodrig\lasagna_chart;
+namespace test\edwrodrig\cassata_chart;
 
-use edwrodrig\lasagna_chart\Range;
+use edwrodrig\cassata_chart\Range;
 use PHPUnit\Framework\TestCase;
 
 class RangeTest extends TestCase
