@@ -12,11 +12,11 @@ class Palette
         $this->colors = $colors;
     }
 
-    public function getColor(string $name) : string {
-        if ( isset($this->colors[$name])) {
-            return $this->colors[$name];
+    public function getColor(int $index) : string {
+        if ( isset($this->colors[$index])) {
+            return $this->colors[$index];
         } else {
-            $hex = md5($name);
+            $hex = md5("fnjdnwea" . $index);
             return "#" . substr($hex, 0, 6);
         }
     }

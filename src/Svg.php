@@ -12,6 +12,19 @@ class Svg
         return sprintf('<polygon points="%s" style="fill:%s;stroke:none;stroke-width:0;" />', $points, $color);
     }
 
+    public static function drawLine(array $coords, string $color) : string {
+        return sprintf('<line x1="%s" y1="%s" x2="%s" y2="%s" stroke="%s" stroke-width="2px"/>',
+            $coords[0][0],
+            $coords[0][1],
+            $coords[1][0],
+            $coords[1][1],
+            $color);
+    }
+
+    public static function drawTextAlignEnd(array $coord, string $text) {
+        return sprintf('<text text-anchor="end" font-family="Arial" font-size="15px" x="%s" y="%s">%s</text>', $coord[0] - 15, $coord[1] + 4, $text);
+    }
+
     private static function serializeCoords(array $coords) : string {
         $numbers = [];
         foreach ( $coords as $coord) {

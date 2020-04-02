@@ -54,9 +54,18 @@ class ChartArea
     }
 
     public function draw(DataValues $data, int $x, int $y) {
-        echo sprintf("<svg x=%d y=%d>", $x, $y);
-        echo Svg::drawPolygon($this->transformCoords($data->getPolygonCoords(0)), $this->palette->getColor($data->getStackedValues(0)->getLabel()));
-        echo Svg::drawPolygon($this->transformCoords($data->getPolygonCoords(1)), $this->palette->getColor($data->getStackedValues(1)->getLabel()));
+        echo sprintf('<g transform="translate(%s %s)">', $x, $y);
+        echo sprintf("<svg>");
+        for ( $i = 0 ; $i < $data->countAreas() ; $i++ ) {
+            echo Svg::drawPolygon($this->transformCoords($data->getPolygonCoords($i)), $this->palette->getColor($i));
+        }
         echo sprintf("</svg>");
+        foreach ( $data->iterateColumns() as $column ) {
+            $coords = $this->transformCoords($column->getLineCoords());
+            echo Svg::drawLine($coords, "#FFFFFF");
+            echo Svg::drawTextAlignEnd($coords[0], $column->getLabel());
+        }
+        echo sprintf('</g>');
+
     }
 }

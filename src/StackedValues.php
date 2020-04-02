@@ -50,4 +50,8 @@ class StackedValues
     public function getEndCoord(int $index) : array {
         return [$this->value, $this->getValue($index)];
     }
+
+    public function getLineCoords() : array {
+        return [$this->getStartCoord(0), $this->getEndCoord($this->count() - 1)];
+    }
 }

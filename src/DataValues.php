@@ -5,7 +5,6 @@ namespace edwrodrig\lasagna_chart;
 
 class DataValues
 {
-
     /**
      * @var StackedValues[]
      */
@@ -13,10 +12,6 @@ class DataValues
 
     public function setStackedValues(StackedValues $column) {
         $this->columns[] = $column;
-    }
-
-    public function getStackedValues(int $index) : StackedValues {
-        return $this->columns[$index];
     }
 
     public function getPolygonCoords(int $index) : array {
@@ -30,12 +25,18 @@ class DataValues
         return array_merge($head, $tail);
     }
 
-    public function getColumnCoords() : array {
-        $coords = [];
+    /**
+     * @return \Generator|StackedValues[]
+     */
+    public function iterateColumns() {
         foreach ( $this->columns as $column ) {
-            $coords[] = $column->getStartCoord(0);
+            yield $column;
         }
-        return $coords;
+    }
+
+    public function countAreas() : int {
+        if ( empty($this->columns)) return 0;
+        return $this->columns[0]->count();
     }
 
 }
