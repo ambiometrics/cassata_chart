@@ -12,6 +12,10 @@ class Config
         $this->data = $data;
     }
 
+    public function getData() : array {
+        return $this->data;
+    }
+
     public function getPalette() : Palette {
         return new Palette(array_values($this->data));
     }
