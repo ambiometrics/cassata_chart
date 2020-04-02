@@ -18,6 +18,10 @@ class StackedValues
         $this->stackValue(...$values);
     }
 
+    public function getLabel() : string {
+        return $this->label;
+    }
+
     public function stackValue(float ...$values) {
         foreach ( $values as $value) {
             $this->stackedValue[] = $value + $this->getLastValue();

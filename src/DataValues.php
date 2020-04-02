@@ -15,7 +15,11 @@ class DataValues
         $this->columns[] = $column;
     }
 
-    public function getPolygonCoords(int $index) {
+    public function getStackedValues(int $index) : StackedValues {
+        return $this->columns[$index];
+    }
+
+    public function getPolygonCoords(int $index) : array {
         $tail = [];
         $head = [];
         foreach ( $this->columns as $column ) {
@@ -24,6 +28,14 @@ class DataValues
         }
 
         return array_merge($head, $tail);
+    }
+
+    public function getColumnCoords() : array {
+        $coords = [];
+        foreach ( $this->columns as $column ) {
+            $coords[] = $column->getStartCoord(0);
+        }
+        return $coords;
     }
 
 }
