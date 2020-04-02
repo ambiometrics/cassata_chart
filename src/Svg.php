@@ -32,6 +32,18 @@ class Svg
             );
     }
 
+    public static function drawCircle(array $coord, float $size, string $color) : string {
+        $radius = $size / 2;
+        return sprintf(
+            '<circle fill="%s" stroke="none" stroke-width="0" cx="%s" cy="%s" r="%s"/>',
+            $color,
+            $coord[0] + $radius,
+            $coord[1] + $radius,
+            $radius
+        );
+    }
+
+
     public static function drawTextAlignEnd(array $coord, string $text) {
         return sprintf('<text text-anchor="end" font-family="Arial" font-size="15px" x="%s" y="%s">%s</text>', $coord[0] - 15, $coord[1] + 4, $text);
     }

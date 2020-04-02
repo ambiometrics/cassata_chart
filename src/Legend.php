@@ -19,7 +19,8 @@ class Legend
         $spacing = $squareSize + 4;
         echo sprintf('<g transform="translate(%s %s)">', $x, $y);
         foreach ( $this->data as $name => $color ) {
-            echo Svg::drawSquare([0, $currentY], $squareSize, $color);
+            //echo Svg::drawSquare([0, $currentY], $squareSize, $color);
+            echo Svg::drawCircle([0, $currentY], $squareSize, $color);
             echo Svg::drawTextAlignStart([10, $currentY + $textOffset], $name);
             $currentY += $spacing;
         }
