@@ -3,22 +3,51 @@ declare(strict_types=1);
 
 use edwrodrig\cassata_chart\ChartArea;
 use edwrodrig\cassata_chart\Config;
-use edwrodrig\cassata_chart\DataValues;
+use edwrodrig\cassata_chart\DataSet;
 use edwrodrig\cassata_chart\Legend;
 use edwrodrig\cassata_chart\Range;
-use edwrodrig\cassata_chart\StackedValues;
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 $config = new Config(json_decode(file_get_contents(__DIR__ . '/config.json'), true));
 
-$data = new DataValues();
-$data->setStackedValues(new StackedValues("a1", 1, 0.25, 0.25, 0.5));
-$data->setStackedValues(new StackedValues("a2", 2, 0.50, 0.25, 0.25));
-$data->setStackedValues(new StackedValues("a3", 3, 0.10, 0.30, 0.60));
+$data1 = new DataSet(['a', 'b', 'c']);
+$data1
+    ->addValue(1,  'a', 0.25)
+    ->addValue(1, 'b', 0.25)
+    ->addValue(1, 'c', 0.5)
+
+    ->addValue(2,  'a', 0.50)
+    ->addValue(2, 'b', 0.25)
+    ->addValue(2, 'c', 0.25)
+
+    ->addValue(3,  'a', 0.10)
+    ->addValue(3, 'b', 0.30)
+    ->addValue(3, 'c', 0.60);
+
+$data2 = new DataSet(['a', 'b', 'c']);
+$data2
+    ->addValue(1,  'a', 0.15)
+    ->addValue(1, 'b', 0.35)
+    ->addValue(1, 'c', 0.5)
+
+    ->addValue(3,  'a', 0.50)
+    ->addValue(3, 'b', 0.25)
+    ->addValue(3, 'c', 0.25)
+
+    ->addValue(7,  'a', 0.20)
+    ->addValue(7, 'b', 0.40)
+    ->addValue(7, 'c', 0.40);
+
+
+$data3 = $data1->diff($data2);
+
+$values1 = $data1->getDataValues();
+$values2 = $data2->getDataValues();
+$values3 = $data3->getDataValues();
 
 $area = new ChartArea(
-    new Range(0, 4, 100),
+    new Range(0, 7, 100),
     new Range(0, 1, 100)
 );
 $area->setMode(ChartArea::MODE_DEPTH);
@@ -32,8 +61,9 @@ header('Content-type: image/svg+xml');
     "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="1200" height="1200" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <?php
-    $area->draw($data, 200, 100 );
-    $area->draw($data, 400, 100);
+    $area->draw($values1, 200, 100 );
+    $area->draw($values2, 400, 100);
+    $area->draw($values3, 600, 100);
     $legend->draw(1000, 100);
     ?>
 </svg>
