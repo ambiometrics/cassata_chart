@@ -26,6 +26,9 @@ class DataSet
     }
 
     public function sort() {
+        if ( empty($this->order) ) {
+            $this->order = array_keys($this->data[array_key_first($this->data)]);
+        }
         ksort($this->data);
     }
 
@@ -94,6 +97,10 @@ class DataSet
             $values->setStackedValues($column);
         }
         return $values;
+    }
+
+    public function getOrder() : array {
+        return $this->order;
     }
 
 }

@@ -59,7 +59,7 @@ header('Content-type: image/svg+xml');
 ?><?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
     "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="1200" height="1200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg width="3000" height="1200" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <?php
     $area->draw($values1, 200, 100 );
     $area->draw($values2, 400, 100);

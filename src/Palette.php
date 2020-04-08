@@ -16,8 +16,20 @@ class Palette
         if ( isset($this->colors[$index])) {
             return $this->colors[$index];
         } else {
-            $hex = md5("fnjdnwea" . $index);
-            return "#" . substr($hex, 0, 6);
+            return self::generateColor($index);
         }
+    }
+
+    private static function generateColor(int $index) : string {
+        $hex = md5("fnjdnwea" . $index);
+        return "#" . substr($hex, 0, 6);
+    }
+
+    public static function createColorMapFromNames(array $names) {
+        $colorMap = [];
+        foreach ( $names as $index => $name ) {
+            $colorMap[$name] = self::generateColor($index);
+        }
+        return $colorMap;
     }
 }
