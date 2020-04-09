@@ -12,6 +12,8 @@ class StackedValues
 
     private float $value;
 
+    private array $originalValues = [];
+
     public function __construct(string $label, float $value, float ...$values) {
         $this->label = $label;
         $this->value = $value;
@@ -25,6 +27,7 @@ class StackedValues
     public function stackValue(float ...$values) {
         foreach ( $values as $value) {
             $this->stackedValue[] = $value + $this->getLastValue();
+            $this->originalValues[] = $value;
         }
     }
 
@@ -53,5 +56,9 @@ class StackedValues
 
     public function getLineCoords() : array {
         return [$this->getStartCoord(0), $this->getEndCoord($this->count() - 1)];
+    }
+
+    public function getOriginalValues() : array {
+        return $this->originalValues;
     }
 }

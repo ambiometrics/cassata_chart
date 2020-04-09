@@ -57,15 +57,18 @@ class ChartArea
         echo sprintf('<g transform="translate(%s %s)">', $x, $y);
         echo sprintf("<svg>");
         for ( $i = 0 ; $i < $data->countAreas() ; $i++ ) {
-            echo Svg::drawPolygon($this->transformCoords($data->getPolygonCoords($i)), $this->palette->getColor($i));
+            echo Svg::drawPolygon($this->transformCoords($data->getPolygonCoords($i)), $this->palette->getColor($i), $data->order[$i] ?? null);
         }
         echo sprintf("</svg>");
-        foreach ( $data->iterateColumns() as $column ) {
+        foreach ( $data->iterateColumns() as $index => $column ) {
             $coords = $this->transformCoords($column->getLineCoords());
             echo Svg::drawLine($coords, "#FFFFFF");
-            echo Svg::drawTextAlignEnd($coords[0], $column->getLabel());
+            ob_start();
+            print_r($data->getNameValueMap($index));
+            echo Svg::drawTextAlignEnd($coords[0], $column->getLabel(), ob_get_clean());
         }
         echo sprintf('</g>');
-
     }
+
+
 }

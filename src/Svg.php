@@ -6,14 +6,14 @@ namespace edwrodrig\cassata_chart;
 
 class Svg
 {
-    public static function drawPolygon(array $coords, string $color) : string {
+    public static function drawPolygon(array $coords, string $color, ?string $tooltip = null) : string {
         $points = self::serializeCoords($coords);
 
-        return sprintf('<polygon points="%s" style="fill:%s;stroke:none;stroke-width:0;" />', $points, $color);
+        return sprintf('<polygon points="%s" style="fill:%s;stroke:none;stroke-width:0;"><title>%s</title></polygon>', $points, $color, $tooltip ?? $color);
     }
 
     public static function drawLine(array $coords, string $color) : string {
-        return sprintf('<line x1="%s" y1="%s" x2="%s" y2="%s" stroke="%s" stroke-width="2px"/>',
+        return sprintf('<line x1="%s" y1="%s" x2="%s" y2="%s" stroke="%s" stroke-width="1px"/>',
             $coords[0][0],
             $coords[0][1],
             $coords[1][0],
@@ -44,8 +44,8 @@ class Svg
     }
 
 
-    public static function drawTextAlignEnd(array $coord, string $text) {
-        return sprintf('<text text-anchor="end" font-family="Arial" font-size="15px" x="%s" y="%s">%s</text>', $coord[0] - 15, $coord[1] + 4, $text);
+    public static function drawTextAlignEnd(array $coord, string $text, ?string $tooltip = null) {
+        return sprintf('<text text-anchor="end" font-family="Arial" font-size="15px" x="%s" y="%s">%s<title>%s</title></text>', $coord[0] - 15, $coord[1] + 4, $text, $tooltip ?? $text);
     }
 
     public static function drawTextAlignStart(array $coord, string $text) {

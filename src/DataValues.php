@@ -10,6 +10,8 @@ class DataValues
      */
     private array $columns = [];
 
+    public array $order;
+
     public function setStackedValues(StackedValues $column) {
         $this->columns[] = $column;
     }
@@ -37,6 +39,12 @@ class DataValues
     public function countAreas() : int {
         if ( empty($this->columns)) return 0;
         return $this->columns[0]->count();
+    }
+
+    public function getNameValueMap(int $index) : array {
+        $combined = array_combine($this->order, $this->columns[$index]->getOriginalValues());
+        arsort($combined, SORT_NUMERIC);
+        return $combined;
     }
 
 }

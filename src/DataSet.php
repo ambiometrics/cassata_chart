@@ -70,6 +70,10 @@ class DataSet
     }
 
     public function diff(DataSet $other) : DataSet {
+        return $this->merge($other, function($a, $b) { return abs($a - $b); } );
+    }
+
+    public function merge(DataSet $other, callable $join) : DataSet {
         $keys1 = array_keys($this->data);
         $keys2 = array_keys($other->data);
         $keys = array_merge($keys1, $keys2);
@@ -84,7 +88,7 @@ class DataSet
             if ( is_null($row1) ) continue;
             if ( is_null($row2) ) continue;
             foreach ( $this->order as $class ) {
-                $diff->addValue($key, $class, abs($row1[$class] - $row2[$class]));
+                $diff->addValue($key, $class, $join($row1[$class], $row2[$class]));
             }
         }
         return $diff;
@@ -92,6 +96,7 @@ class DataSet
 
     public function getDataValues() : DataValues {
         $values = new DataValues();
+        $values->order = $this->order;
         foreach ( $this->data as $key => $value ) {
             $column = new StackedValues(strval($key), $key, ...array_values($value));
             $values->setStackedValues($column);
